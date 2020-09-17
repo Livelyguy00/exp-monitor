@@ -4,7 +4,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import Expense from './Expense';
 
 export default function ExpensesList({ expenses, removeExpense, editExpense, clearExpenses }) {
-  const renderExpense = (id, {date, category, description, cost}) => {
+  const renderExpense = ([id, {date, category, description, cost}]) => {
     return(
       <CSSTransition
         key={id}
@@ -19,7 +19,7 @@ export default function ExpensesList({ expenses, removeExpense, editExpense, cle
   return (
     <div className='p-5 position-relative expensesList'>
       <div className='clearExpenses position-absolute'>
-        <svg onClick={() => clearExpenses()} width="2em" height="2em" viewBox="0 0 16 16" className="bi bi-arrow-repeat clearExpenses__icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <svg onClick={clearExpenses} width="2em" height="2em" viewBox="0 0 16 16" className="bi bi-arrow-repeat clearExpenses__icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
           <path fillRule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
         </svg>
@@ -38,7 +38,7 @@ export default function ExpensesList({ expenses, removeExpense, editExpense, cle
       </table>
       <div className='expensesList__expenses'>
         <TransitionGroup>
-          {expenses ? Object.entries(expenses).map(expense => renderExpense(expense[0], expense[1])) : null}
+          {expenses ? Object.entries(expenses).map(renderExpense) : null}
         </TransitionGroup>
       </div>
     </div>

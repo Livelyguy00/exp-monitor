@@ -22,7 +22,7 @@ Object.filter = (obj, predicate) =>
 
 export default function App() {
   const [ expenses, setExpenses ] = useLocalStorage('expenses', {})
-  const indexer = useMemo(getIndexer, [])
+  let indexer = useMemo(getIndexer, [])
 
   const addExpense = expense => {
     const id = indexer()
@@ -34,8 +34,8 @@ export default function App() {
   }
 
   const deleteAllExpenses = () => {
-    setExpenses(expanses => Object.filter(expanses, key => key === true))
-    window.location.reload(false)
+    setExpenses({})
+    indexer = getIndexer()
   }
 
   const saveExpense = id => (expense) => {
@@ -43,18 +43,14 @@ export default function App() {
   }
 
   const sumExpenses = () => {
-    let sum = 0
-    Object.values(expenses).map(expense => {
-      return sum += parseInt(expense.cost)
-    })
-    return sum
+    return Object.values(expenses).reduce((value, currValue) => parseInt(value) + parseInt(currValue.cost), 0)
   }
 
   return (
     <div className='container bg-info app'>
       <ExpenseForm onSubmit={addExpense} />
       <ExpensesList expenses={expenses} removeExpense={deleteExpense} editExpense={saveExpense} clearExpenses={deleteAllExpenses} />
-      <h2 className='font-weight-bold text-danger text-right pr-5 mr-5'>{`${sumExpenses()} PLN`}</h2>
+      <h2 className='font-weight-bold text-light text-right pr-5 mr-5'>{`${sumExpenses()} PLN`}</h2>
     </div>
   )
 }
