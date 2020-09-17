@@ -1,0 +1,144 @@
+*,::after,::before{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: aliceblue;
+}
+
+.app{
+  height: 100vh;
+}
+
+.modalWindow{
+  position: fixed;
+  top:0;
+  left:0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 999;
+  background-color: rgba(#000, .3);
+
+  &__content{
+    background-color: #fff;
+    text-align: center;
+    border-radius: 1rem;
+    padding: 3rem 5rem;
+    color: #000;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+}
+
+.addExpense{
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+
+  & > label{
+    display: flex;
+    align-items: center;
+    margin: 0;
+  }
+
+  &__icon{
+    transition: all .3s;
+    cursor: pointer;
+    z-index: 3;
+
+    &:hover{
+      transform: scale(1.15);
+    }
+
+    &:hover ~ .addExpense__label{
+      opacity: 1;
+      transform: translateX(1rem);
+    }
+  }
+
+  &__label{
+    transform: translateX(-1rem);
+    opacity: 0;
+    transition: all .3s;
+    z-index: 0;
+    position: absolute;
+    left: 3rem;
+  }
+}
+
+.expense{
+  &__el{
+    
+  }
+
+  &__control{
+
+    &--icon{
+      transition: all .3s;
+      cursor: pointer;
+
+      &:hover{
+        transform: scale(1.15);
+      }
+    }
+  }
+}
+
+.clearExpenses{
+  right: 8%;
+  top: 1rem;
+  display: flex;
+  align-items: center;
+
+  &__icon{
+    margin-right: .5rem;
+    cursor: pointer;
+    z-index: 5;
+
+    &:hover ~ .clearExpenses__label{
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  &__label{
+    transform: translateX(-1.5rem);
+    opacity: 0;
+    transition: all .3s;
+    z-index: 3;
+  }
+}
+
+.expensesList{
+
+  &__expenses{
+    height: 50vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar{
+      width: .5rem;
+
+      &-track{
+        background-color: rgba(#000, .3);
+        border-radius: 5rem;
+      }
+
+      &-thumb{
+        background-color: rgba(darkblue, .3);
+        border-radius: 5rem;
+      }
+    }
+  }
+}
+
+// REACT TRANSITION GROUP //
+.expense-animation--enter{ opacity: 0; transform: translateX(-3rem); }
+.expense-animation--enter-active{ opacity: 1; transform: translateX(0); transition: all .3s; }
+
+.expense-animation--exit{ opacity: 1; transform: translateX(0); }
+.expense-animation--exit-active{ opacity: 0; transform: translateX(-3rem); transition: all .3s; }

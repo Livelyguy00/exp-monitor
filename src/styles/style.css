@@ -1,0 +1,108 @@
+*, ::after, ::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+body {
+  background-color: aliceblue; }
+
+.app {
+  height: 100vh; }
+
+.modalWindow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.3); }
+  .modalWindow__content {
+    background-color: #fff;
+    text-align: center;
+    border-radius: 1rem;
+    padding: 3rem 5rem;
+    color: #000;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%); }
+
+.addExpense {
+  display: flex;
+  align-items: flex-end;
+  position: relative; }
+  .addExpense > label {
+    display: flex;
+    align-items: center;
+    margin: 0; }
+  .addExpense__icon {
+    transition: all .3s;
+    cursor: pointer;
+    z-index: 3; }
+    .addExpense__icon:hover {
+      transform: scale(1.15); }
+    .addExpense__icon:hover ~ .addExpense__label {
+      opacity: 1;
+      transform: translateX(1rem); }
+  .addExpense__label {
+    transform: translateX(-1rem);
+    opacity: 0;
+    transition: all .3s;
+    z-index: 0;
+    position: absolute;
+    left: 3rem; }
+
+.expense__control--icon {
+  transition: all .3s;
+  cursor: pointer; }
+  .expense__control--icon:hover {
+    transform: scale(1.15); }
+
+.clearExpenses {
+  right: 8%;
+  top: 1rem;
+  display: flex;
+  align-items: center; }
+  .clearExpenses__icon {
+    margin-right: .5rem;
+    cursor: pointer;
+    z-index: 5; }
+    .clearExpenses__icon:hover ~ .clearExpenses__label {
+      opacity: 1;
+      transform: translateX(0); }
+  .clearExpenses__label {
+    transform: translateX(-1.5rem);
+    opacity: 0;
+    transition: all .3s;
+    z-index: 3; }
+
+.expensesList__expenses {
+  height: 50vh;
+  overflow-y: scroll;
+  overflow-x: hidden; }
+  .expensesList__expenses::-webkit-scrollbar {
+    width: .5rem; }
+    .expensesList__expenses::-webkit-scrollbar-track {
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 5rem; }
+    .expensesList__expenses::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 139, 0.3); }
+
+.expense-animation--enter {
+  opacity: 0;
+  transform: translateX(-3rem); }
+
+.expense-animation--enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all .3s; }
+
+.expense-animation--exit {
+  opacity: 1;
+  transform: translateX(0); }
+
+.expense-animation--exit-active {
+  opacity: 0;
+  transform: translateX(-3rem);
+  transition: all .3s; }
