@@ -5,8 +5,11 @@ import ExpensesList from './ExpensesList';
 
 const getIndexer = () => {
   let i = parseInt(localStorage.getItem('index')) || 0;
-  return () => {
-    i+=1
+  return (cmd) => {
+    if(cmd === 'reset')
+      i = 0
+    else
+      i+=1
     localStorage.setItem('index', i)
     return i
   }
@@ -22,6 +25,7 @@ Object.filter = (obj, predicate) =>
 
 export default function App() {
   const [ expenses, setExpenses ] = useLocalStorage('expenses', {})
+
   let indexer = useMemo(getIndexer, [])
 
   const addExpense = expense => {
@@ -35,7 +39,7 @@ export default function App() {
 
   const deleteAllExpenses = () => {
     setExpenses({})
-    indexer = getIndexer()
+    indexer('reset')
   }
 
   const saveExpense = id => (expense) => {
