@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import FormInput from './FormInput';
 
-export default function Modal({ type, actions, onClose, onSubmit, previousValues }) {
+export default function Modal({ type, onClose, onSubmit, previousValues }) {
   const [date, setDate] = useState('Data')
   const [category, setCategory] = useState('Kategoria')
   const [description, setDescription] = useState('Opis')
@@ -22,10 +22,10 @@ export default function Modal({ type, actions, onClose, onSubmit, previousValues
         <div className='modalWindow__content'>
           <form id='expenseEditForm' onSubmit={() => onSubmit({date, category, description, cost})}>
             <div className='form-row align-items-center mx-4 py-5'>
-              <FormInput name='date-modal' type='date' previousValue={date} label='Data' onChange={setDate} colSize={3}  />
-              <FormInput name='category-modal' type='text' previousValue={category} label='Kategoria' onChange={setCategory} colSize={3} />
-              <FormInput name='description-modal' type='text' previousValue={description} label='Opis' onChange={setDescription} colSize={3} />
-              <FormInput name='value-modal' type='number' previousValue={cost} label='Koszt' onChange={setCost} colSize={2} />
+              <FormInput name='date-modal' type='date' edit={true} previousValue={date} label='Data' onChange={setDate} colSize={3}  />
+              <FormInput name='category-modal' type='text' edit={true} previousValue={category} label='Kategoria' onChange={setCategory} colSize={3} />
+              <FormInput name='description-modal' type='text' edit={true} previousValue={description} label='Opis' onChange={setDescription} colSize={3} />
+              <FormInput name='value-modal' type='number' edit={true} previousValue={cost} label='Koszt' onChange={setCost} colSize={2} />
               <div className='addExpense'>
                 <label htmlFor='submit-modal'>
                   <svg width="2em" height="2em" viewBox="0 0 16 16" className="bi bi-check-square-fill ml-3 addExpense__icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

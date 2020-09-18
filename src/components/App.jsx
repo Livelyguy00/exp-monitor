@@ -47,7 +47,7 @@ export default function App() {
   }
 
   const sumExpenses = () => {
-    return Object.values(expenses).reduce((value, currValue) => parseInt(value) + parseInt(currValue.cost), 0)
+    return Object.values(expenses).reduce((sum, expense) => parseInt(sum) + parseInt(expense.cost), 0)
   }
 
   return (

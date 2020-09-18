@@ -24,7 +24,6 @@ export default function Expense({ id, date, category, description, cost, onDelet
       {modal ? (
         <Modal 
           type='editExpense'
-          actions={['Anuluj', 'Zapisz']}
           onClose={() => setModal(false)}
           onSubmit={(values) => {
             onSaveExpense(values)
